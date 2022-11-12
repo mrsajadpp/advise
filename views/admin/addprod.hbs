@@ -1,0 +1,97 @@
+{{#if update}}
+<form action="/update/{{product._id}}" enctype="multipart/form-data" method="post" style="width: 90%; height: 100%; padding-top: 10px;"
+  class="mx-auto">
+  <div class="form-group" style="margin-top: 60px;">
+    <label for="prodTitle">Product title:</label>
+    <input type="text" class="form-control" id="prodTitle" name="title" value="{{product.title}}" placeholder="Enter product title" required="">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodDescription">Description:</label>
+    <textarea type="text" class="form-control" id="prodDescription" name="description" rows="4"
+      placeholder="Enter product description" required="">{{product.description}}</textarea>
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodCategory">Category:</label>
+    <input type="text" class="form-control" id="prodCategory" value="{{product.category}}" name="category" placeholder="Enter product category">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodOldPrice">Old price:</label>
+    <input type="number" class="form-control" id="prodOldPrice" value="{{product.oldPrice}}" name="oldPrice" placeholder="Enter product old price">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodPrice">Price:</label>
+    <input type="number" class="form-control" id="prodPrice" value="{{product.price}}" name="price" placeholder="Enter product price" required="">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodOldPrice">Delvery charge</label>:</label>
+    <input type="number" class="form-control" id="delPrice" value="{{product.price}}" name="charge" placeholder="Enter delivery charge">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodImage">Product Image:</label>
+    <input type="file" class="form-control" id="prodImage" name="thumbnail" accept="image/jpg">
+    <small id="emailHelp" class="form-text text-muted">This is your product thumbnail image.</small>
+  </div>
+  </br>
+  <button type="submit" style="width: 100%;" class="btn btn-primary">UPDATE</button>
+</form>
+<br>
+{{else}}
+<form action="/add" enctype="multipart/form-data" method="post" style="width: 90%; height: 100%; padding-top: 10px;"
+  class="mx-auto">
+  <div class="form-group" style="margin-top: 60px;">
+    <label for="prodTitle">Product title:</label>
+    <input type="text" class="form-control" id="prodTitle" name="title" placeholder="Enter product title" required="">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodDescription">Description:</label>
+    <textarea type="text" class="form-control" id="prodDescription" name="description" rows="4"
+      placeholder="Enter product description" required=""></textarea>
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodCategory">Category:</label>
+    <input type="text" class="form-control" id="prodCategory" name="category" placeholder="Enter product category">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodOldPrice">Old price:</label>
+    <input type="number" class="form-control" id="prodOldPrice" name="oldPrice" placeholder="Enter product old price">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodPrice">Price:</label>
+    <input type="number" class="form-control" id="prodPrice" name="price" placeholder="Enter product price" required="">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodOldPrice">Delvery charge</label>:</label>
+    <input type="number" class="form-control" id="delPrice" name="charge" placeholder="Enter delivery charge">
+    <!--<small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>-->
+  </div>
+  </br>
+  <div class="form-group">
+    <label for="prodImage">Product Image:</label>
+    <input type="file" class="form-control" id="prodImage" name="thumbnail" accept="image/jpg" required="">
+    <small id="emailHelp" class="form-text text-muted">This is your product thumbnail image.</small>
+  </div>
+  </br>
+  <button type="submit" style="width: 100%;" class="btn btn-primary">ADD</button>
+</form>
+<br>
+{{/if}}

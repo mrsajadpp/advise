@@ -1,0 +1,80 @@
+<div class="card mx-auto rounded-0 position-static"
+    style="width: 100%; border:none; border-bottom: 1px solid #f2f2f2; margin-top: 60px;">
+    <div class="card-body mx-auto" style="width: 100%;">
+        {{#if amount}}
+        <h5 class="card-title">Total price: ₹{{amount}}</h5>
+        {{else}}
+        <h5 class="card-title">Total price: ₹0</h5>
+        {{/if}}
+        {{#if charge}}
+        <p class="card-text">Delivery charge: ₹{{charge}}</p>
+        {{else}}
+        <p class="card-text">Delivery charge: ₹0</p>
+        {{/if}}
+        <p class="card-text">Click to place your order.</p>
+        <a href="/order" class="btn btn-warning">PLACE ORDER</a>
+    </div>
+</div>
+{{#if products}}
+{{#each products}}
+<div class="card mx-auto rounded-0 position-static"
+    style="width: 100%; display: flex;flex-direction: row; border: none; border-bottom: 1px solid #f2f2f2;">
+    <img style="width: 80px; margin-left: 10px;" src="/images/products/{{this.item}}.jpeg"
+        alt="{{this.product.title}} - Basket">
+    <div class="card-body">
+        <h5 class="card-title">{{this.product.title}}</h5>
+        <p class="card-text">{{this.product.description}}</p>
+        {{#if this.product.oldPrice}}
+        <p class="card-text"><span
+                style="text-decoration: line-through; color: red;">₹{{this.product.oldPrice}}</span>&nbsp;<span
+                style="color: green;">₹{{this.product.price}}</span></p>
+        {{else}}
+        <p class="card-text"><span style="color: green;">₹{{this.product.price}}</span></p>
+        {{/if}}
+        <!--<a href="/order/{{this.product._id}}" class="btn btn-danger"><i class="bx bx-rupee"></i></a>-->
+        <div style="padding-left: 10px;" class="buttons">
+            <button onclick="changeQuantity('{{this._id}}', '{{this.item}}', -1, {{this.quantity}}, '{{user}}')"
+                class="p-btn purple">
+                <box-icon name='minus'></box-icon>
+            </button>
+            <span class="count">{{this.quantity}}</span>
+            <button onclick="changeQuantity('{{this._id}}', '{{this.item}}', 1, {{this.quantity}}, '{{user}}')"
+                class="h-btn">
+                <box-icon name='plus' color='#eeaa01'></box-icon>
+            </button>
+        </div>
+    </div>
+</div>
+{{/each}}
+<div class="conditions">
+    <div class="powered">
+        <img src="/images/power.png" alt="Trace">
+    </div>
+</div>
+{{else}}
+<p style="align-items: center; justify-content: center; display: flex; height: 65vh;">Cart is empty</p>
+{{/if}}
+<script>
+    function changeQuantity(cartId, productId, count, quantity, userId) {
+        quantity = parseInt(quantity);
+        count = parseInt(count);
+        $.ajax({
+            url: '/quantity',
+            data: {
+                cart: cartId,
+                product: productId,
+                count: count,
+                quantity: quantity,
+                user: userId
+            },
+            method: 'post',
+            success: (response) => {
+                if (response.removeProduct) {
+                    location.reload();
+                } else {
+                    location.reload();
+                }
+            }
+        })
+    }
+</script>

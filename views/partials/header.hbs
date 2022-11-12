@@ -1,0 +1,28 @@
+<div class="header">
+    <div class="left">
+        <div class="menu-space">
+            <button onclick="menu('menuBar');" class="menu-open">
+                <box-icon name='menu'></box-icon>
+            </button>
+        </div>
+    </div>
+    <div class="center">
+        <div class="logo-space">
+            <a href="/">
+                <img src="/images/banner.png" alt="banner">
+            </a>
+        </div>
+    </div>
+    <div class="right">
+        <div class="cart-space">
+            <a href="/cart">
+                <button class="cart">
+                    {{#if notcount}}
+                    <span class="not-dot">{{notcount}}</span>
+                    {{/if}}
+                    <box-icon name='cart-alt' ></box-icon>
+                </button>
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,38 @@
+<div style="width: 100%; height: 60px;"></div>
+{{#if data}}
+{{#each data}}
+<div class="card mx-auto rounded-0 position-static" style="width: 100%; display: flex;flex-direction: row; border: none; border-bottom: 1px solid #f2f2f2;">
+    <div class="card-body">
+      <h6 class="card-title">{{this.deliveryDetails.address}}, {{this.deliveryDetails.pincode}}, {{this.deliveryDetails.city}}, {{this.deliveryDetails.state}}, {{this.deliveryDetails.country}}</h6>
+       <p class="card-text"><span style="color: grey;">Order id : {{this._id}}</span></p>
+       <p class="card-text"><span style="color: grey;">Email : {{this.deliveryDetails.email}}</span></p>
+       <p class="card-text"><span style="color: grey;">Mobile : {{this.deliveryDetails.mobile}}</span></p>
+       {{#if this.status}}
+       <p class="card-text"><span style="color: grey;">Status : Plced</span></p>
+       {{else}}
+       <p class="card-text"><span style="color: grey;">Status : Pending</span></p>
+       {{/if}}
+    <p class="card-text"><span style="color: green;">₹{{this.tottalAmount}}</span></p>
+      <a href="/orderproducts/{{this._id}}" class="btn btn-danger" style="width: 100%; height: 45px; display: flex; align-items: center; justify-content: center;"><box-icon name='dots-horizontal' color='#f9f4f4' ></box-icon></a>
+      <br>
+      <a href="/user/order/cancel/{{this._id}}">
+        <button class="btn btn-danger" style="width: 100%; height: 45px; display: flex; align-items: center; justify-content: center;"><box-icon name='x' color='#f9f4f4' ></box-icon></button>
+      </a>
+      {{#if this.status}}
+      <br>
+      <a href="/accept/{{this._id}}">
+        <button class="btn btn-success" style="width: 100%; height: 45px; display: flex; align-items: center; justify-content: center;"><box-icon name='chevron-right-circle' type='solid' color='#ffffff' ></box-icon></button>
+      </a>
+      {{else}}
+      {{/if}}
+    </div>
+  </div>
+  {{/each}}
+<div class="conditions">
+    <div class="powered">
+        <img src="/images/power.png" alt="Trace">
+    </div>
+</div>
+{{else}}
+<p style="align-items: center; justify-content: center; display: flex; height: 65vh;">Orders is empty</p>
+{{/if}}

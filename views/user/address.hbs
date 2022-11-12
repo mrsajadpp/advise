@@ -1,0 +1,133 @@
+<div class="address-container">
+    <div class="logo-containe">
+    </div>
+    <div class="inp-section">
+        <form action="/placeorder" id="checkout" method="POST">
+            <div class="name">
+                <div class="name-area">
+                    <div class="label">
+                </div>
+                    <input type="text" id="fname" name="firstname" placeholder="First Name" required>
+                </div>
+                <span>&nbsp;&nbsp;</span>
+                <div class="name-area">
+                    <div class="label">
+                </div>
+                    <input type="text" id="lname" name="lastname" placeholder="Last Name" required>
+                </div>
+            </div>
+            <div class="inp-here">
+                <div class="label">
+                </div>
+                <input type="text" id="address" name="address" placeholder="Address" required>
+            </div>
+            <div class="inp-here">
+                <div class="label">
+                </div>
+                <input type="number" id="number" name="phnumber" placeholder="Phone Number" required>
+            </div>
+            <div class="inp-here">
+                <div class="label">
+                </div>
+                <input type="email" id="email" name="email" placeholder="Email" value="{{user.email}}" required>
+            </div>
+            <div class="inp-here">
+                <div class="label">
+                </div>
+                <input type="text" id="country" value="INDIA" name="country" placeholder="Country" required readonly>
+            </div>
+            <div class="inp-here">
+                <div class="label">
+                </div>
+                <input type="text" id="state" name="state" placeholder="State" required>
+            </div>
+            <div class="inp-here">
+                <div class="label">
+                </div>
+                <input type="text" id="cty" name="city" placeholder="City" required>
+            </div>
+            <div class="inp-here">
+                <div class="label">
+                </div>
+                <input type="number" id="pin" name="pincode" placeholder="Pin Code" required>
+            </div>
+            <!--<div class="totals">
+                <div class="cod">
+                    <span class="money">Amount: </span>
+                    <span class="money">Delivery: </span>
+                    <h5 class="money green">Tottal: </h5>
+                </div>
+                <div class="cod">
+                    <span class="money">₹{{amount}}</span>
+                    <span class="money">₹{{charge}}</span>
+                    <h5 class="money green">₹{{tottal}}</h5>
+                </div>
+            </div>-->
+            <div style="margin-top: 20px;" class="inp-here">
+                <button type="submit">PLACE ORDER</button>
+            </div>
+        </form>
+    </div>
+</div>
+<div class="conditions">
+    <div class="powered">
+        <img src="/images/power.png" alt="Trace">
+    </div>
+</div>
+<script>
+    $("#checkout").submit((e) => {
+        e.preventDefault()
+        $.ajax({
+            url: '/placeorder',
+            method: 'post',
+            data: $("#checkout").serialize(),
+            success: (response) => {
+                    razorpayPayment(response.response, response.data)
+            }
+        })
+    })
+    function razorpayPayment(order, details) {
+        var options = {
+            "key": "rzp_test_2TOP2DA2HluKoO", // Enter the Key ID generated from the Dashboard
+            "amount": order.amount, // Amount is in currency subunits. Default currency is INR. Hence, 50000 refers to 50000 paise
+            "currency": order.currency,
+            "name": "Basket",
+            "description": "Payment gateway.",
+            "image": "https://i.postimg.cc/66MvD2HL/favicon.jpg",
+            "order_id": order.id, //This is a sample Order ID. Pass the `id` obtained in the response of Step 1
+            "handler": function (response) {
+                verifyPayment(order, response)
+            },
+            "prefill": {
+                "name": details.firstname + '' + details.lastname,
+                "email": details.email,
+                "contact": details.phnumber
+            },
+            "notes": {
+                "address": "Trace incorparation"
+            },
+            "theme": {
+                "color": "#3399cc"
+            }
+        };
+        var rzp1 = new Razorpay(options);
+        rzp1.open();
+    }
+    function verifyPayment(order, payment) {
+        $.ajax({
+            url: '/verifypayment',
+            method: 'post',
+            data: {
+                order,
+                payment
+            },
+            success: (response) => {
+                if (response) {
+                    location.href = '/status/true';
+                } else {
+                    location.href = '/status/false';
+                }
+            }
+        })
+    }
+</script>

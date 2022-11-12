@@ -1,0 +1,33 @@
+<div class="loginContainer">
+  <form action="/admin/accept" method="post" class="loginContainer">
+    <div class="imageContainer">
+      <img class="logoImg" src="/images/banner.png" />
+    </div>
+    <input hidden="hidden" type="number" name="onetp" id="Ontp" required="" value="{{onetp}}" />
+    <input hidden="hidden" type="text" name="orderId" id="OrderId" required="" value="{{order}}" />
+    <!--<input hidden="hidden" type="text" name="uid" id="Uid" required="" value="{{uid}}" />-->
+    <div class="inputContainer">
+      <!--<label for="Password">Your <span class="fill">password</span></label>-->
+      <input oninput="verifyOtp(this.id)" type="number" name="otp" id="Otp" placeholder="Enter your otp" required="" />
+      <div class="btn" onclick="lock('viewBadge');">
+        <span id="viewBadge" class="bx bx-check"></span>
+      </div>
+    </div><br>
+    <span style="font-size: 10px;">Checkout your email and enter the OTP.</span>
+    <button id="verifyBtn" hidden="hidden" type="submit">VERIFY</button>
+  </form>
+</div>
+<script type="text/javascript">
+  function verifyOtp(id) {
+    let otp = document.getElementById('Ontp');
+    let badge = document.getElementById('viewBadge');
+    let btn = document.getElementById('verifyBtn');
+    let input = document.getElementById(id);
+    if (input.value === otp.value) {
+      badge.style.color = 'green';
+      btn.click();
+    } else {
+      badge.style.color = 'red';
+    }
+  }
+</script>

@@ -1,0 +1,79 @@
+.form-container{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-container .banner-area{
+    width: 100%;
+    height: 150px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-container .banner-area img{
+    width: 200px;
+}
+.form-area{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px;
+}
+.form-area form{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.form-area .inp-containe{
+    width: 300px;
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.inp-containe input{
+    width: 100%;
+    height: 100%;
+    padding-left: 10px;
+    outline: none;
+    border-radius: 8px;
+    background-color: #f6f6f6;
+    border: none;
+}
+.cont{
+    margin-top: 30px !important;
+}
+.inp-containe button{
+    width: 100%;
+    height: 100%;
+    border-radius: 8px;
+    background-color: #eeaa01;
+    border: none;
+    color: #ffffff;
+    font-weight: 800;
+    font-size: 18px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.conditions{
+    width: 100%;
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
