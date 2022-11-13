@@ -1,17 +1,21 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800&display=swap");
+
 body {
   padding: 0px;
   margin: 0px;
   width: 100vw;
 }
-html{
+
+html {
   scroll-behavior: smooth;
 }
-a{
+
+a {
   text-decoration: none;
   color: #000 !important;
 }
-.header{
+
+.header {
   width: 100%;
   height: 60px;
   background-color: #eeaa01;
@@ -21,52 +25,60 @@ a{
   position: fixed;
   top: 0px;
 }
-.left{
+
+.left {
   width: 33.33333333333333%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.center{
+
+.center {
   width: 33.33333333333333%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.right{
+
+.right {
   width: 33.33333333333333%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.menu-space{
+
+.menu-space {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.logo-space{
+
+.logo-space {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.logo-space img{
+
+.logo-space img {
   width: 100px;
 }
-.cart-space{
+
+.cart-space {
   width: 100%;
   height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
 }
-.menu-space button{
+
+.menu-space button {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +87,8 @@ a{
   background-color: transparent;
   border: none;
 }
-.cart-space a{
+
+.cart-space a {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -83,14 +96,16 @@ a{
   position: absolute;
   right: 10px;
 }
-.cart-space button{
+
+.cart-space button {
   display: flex;
   align-items: center;
   justify-content: center;
   background-color: transparent;
   border: none;
 }
-.not-dot{
+
+.not-dot {
   text-decoration: none;
   color: #fff;
   background-color: #000;
@@ -102,17 +117,19 @@ a{
   border-radius: 30px;
   font-size: 9px;
 }
-.menu-bar{
+
+.menu-bar {
   height: 100vh;
   width: 80%;
   position: relative;
   top: 0px;
   left: 0px;
   background-color: #fff;
-  box-shadow:0 0 0 1600px rgba(0,0,0,0.65);
+  box-shadow: 0 0 0 1600px rgba(0, 0, 0, 0.65);
   color: #000;
 }
-.menu-close{
+
+.menu-close {
   width: 100%;
   height: 60px;
   background-color: #fff;
@@ -121,7 +138,8 @@ a{
   align-items: center;
   justify-content: center;
 }
-.close-icon{
+
+.close-icon {
   width: 100%;
   height: 100%;
   background-color: #fff;
@@ -129,18 +147,21 @@ a{
   align-items: center;
   justify-content: center;
 }
-.close-icon box-icon{
+
+.close-icon box-icon {
   position: absolute;
   left: 10px;
 }
-.menu-container{
-  height: 100%;
+
+.menu-container {
+  height: auto;
   width: 100%;
   background-color: #fff;
   display: flex;
   flex-direction: column;
 }
-.search-area{
+
+.search-area {
   width: 100%;
   height: 30px;
   background-color: #fff;
@@ -148,7 +169,8 @@ a{
   align-items: center;
   justify-content: center;
 }
-.search-area form{
+
+.search-area form {
   width: 100%;
   height: 100%;
   background-color: #fff;
@@ -156,7 +178,8 @@ a{
   align-items: center;
   justify-content: center;
 }
-.search-area input{
+
+.search-area input {
   width: 100%;
   height: 100%;
   border: none;
@@ -165,7 +188,8 @@ a{
   outline: none;
   margin-left: 10px;
 }
-.search-area button{
+
+.search-area button {
   width: 35px;
   height: 100%;
   border: none;
@@ -176,54 +200,58 @@ a{
   align-items: center;
   justify-content: center;
 }
-.menu-container .long-ul{
-  display: flex !important;
-  flex-direction: column !important;
-  width: 100%;
-  height: 90px !important;
-}
-.menu-container a{
-  width: 100%;
-  height: 10px;
+
+.menu-container a {
   display: flex;
-  flex-direction: column;
-}
-.menu-container .long-ul a{
-  width: 100%;
+  align-items: center;
+  justify-content: center;
   height: 100%;
-  display: flex;
-  flex-direction: column;
+  width: 100%;
 }
-.menu-container ul{
-  height: 10px;
+
+.menu-container ul {
+  height: 40px;
   width: 100%;
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  align-items: center;
+  justify-content: center;
 }
-.login-ul{
-  height: 10px;
+
+.menu-container hr {
+  
+}
+
+.login-ul {
+  height: 30px;
   width: 100%;
   display: flex;
 }
-.login-li{
+
+.login-li {
   width: 100%;
-  height: 10px;
+  height: 30px;
 }
-.menu-container li{
+
+.menu-container li {
   list-style-type: none;
   position: absolute;
   left: 10px;
-  height: 100%;
-  width: 100%;
+  height: 40px;
+  width: 80%;
   display: flex;
+  align-items: center;
 }
-.deactive{
+
+.deactive {
   display: none !important;
   opacity: 0 !important;
   background-color: transparent !important;
   color: transparent !important;
 }
-.bodyContainer{
+
+.bodyContainer {
   width: 100%;
   height: 100%;
 }

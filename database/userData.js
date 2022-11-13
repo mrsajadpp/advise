@@ -93,6 +93,7 @@ module.exports = {
             hmac.update(details['payment[razorpay_order_id]'] + '|' + details['payment[razorpay_payment_id]']);
             hmac = hmac.digest('hex');
             if (hmac == details['payment[razorpay_signature]']) {
+                db.get().collection(COLLECTIONS.CART).deleteOne({ user: ObjectId(details.userId) });
                 resolve(true);
             } else {
                 resolve(false);

@@ -373,7 +373,6 @@ module.exports = {
                 date: new Date()
             }
             db.get().collection(COLLECTIONS.ORDERS).insertOne(orderObj).then((response) => {
-                db.get().collection(COLLECTIONS.CART).deleteOne({ user: ObjectId(user._id) });
                 resolve(response)
             });
         });
