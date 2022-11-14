@@ -82,7 +82,6 @@ router.get('/cart', verifyLogin, async (req, res, next) => {
     productData.getCartProducts(req.session.user._id).then((items) => {
       productData.tottalAmount(req.session.user._id).then((amount) => {
         productData.deliveryCharge(req.session.user._id).then((charge) => {
-          console.log(items) 
           for (let index = 0; index < items.length; index++) {
             items[index].product.title = items[index].product.title.slice(0, 10) + '...';
             items[index].product.description = items[index].product.description.slice(0, 20) + '...';
@@ -134,9 +133,11 @@ router.post('/placeorder', verifyLogin, async (req, res, next) => {
   productData.getCartProducts(req.session.user._id).then((products) => {
     productData.tottalAmount(req.session.user._id).then((tottalAmount) => {
       productData.deliveryCharge(req.session.user._id).then((charge) => {
-        productData.placeOrder(req.body, products, tottalAmount + charge, req.session.user).then((response) => {
-          userData.generateRazorpay(response.insertedId.toString(), tottalAmount + charge, req.session.user._id).then((response) => {
-            res.json({ response, data: req.body });
+        productData.placeOrder(req.body, products, tottalAmount + charge, req.session.user).then((orderId) => {
+          userData.generateRazorpay(orderId.insertedId.toString(), tottalAmount + charge, req.session.user._id).then((response) => {
+            res.json({ response, data: req.body, userId: req.session.user._id, orderId });
+          }).catch((err) => {
+            res.redirect('/status/false')
           })
         })
       })
@@ -145,9 +146,36 @@ router.post('/placeorder', verifyLogin, async (req, res, next) => {
 })
 //VERIFY PAYMENT
 router.post('/verifypayment', verifyLogin, (req, res, next) => {
-  userData.verifyPayment(req.body).then((response) => {
+  userData.verifyPayment(req.body, req.session.user._id).then((response) => {
     userData.changePaymentStatus(req.body['order[receipt]']).then(() => {
       res.json(response);
+      productData.getUserOrders(req.body.orderId).then(async (response) => {
+        userData.doFind(response[0].userId).then(async (userData) => {
+          let message = {
+            email: userData.user.email,
+            title: 'Your order was succefully placed.',
+            text: 'Your order was succesfully placed.',
+            content: `<div style="font-family: Helvetica,Arial,sans-serif;min-width:1000px;overflow:auto;line-height:2">
+            <div style="margin:50px auto;width:70%;padding:20px 0">
+              <div style="border-bottom:1px solid #eee">
+                <a href="" style="font-size:1.4em;color: #ec3531;text-decoration:none;font-weight:600">Trace inc</a>
+              </div>
+              <p style="font-size:1.1em">Hi,</p>
+              <p>Thank you for choosing Trace inc. Your order was succesfully placed.</p>
+              <p style="color: green;">Order id: ${req.body.orderId}.</p>
+              <p style="font-size:0.9em;">Regards,<br />Trace inc</p>
+              <hr style="border:none;border-top:1px solid #eee" />
+              <div style="float:right;padding:8px 0;color:#aaa;font-size:0.8em;line-height:1;font-weight:300">
+                <p>Trace inc</p>
+                <p>Kolathur po 679338, Kerala 679338</p>
+                <p>India</p>
+              </div>
+            </div>
+          </div>`
+          }
+          await sendMail(message)
+        });
+      });
     });
   });
 });
@@ -161,7 +189,7 @@ router.get('/orders', verifyLogin, async (req, res, next) => {
 })
 //PAYMENT RESSULT
 router.get('/status/:status', verifyLogin, (req, res, next) => {
-  if (req.params.status) {
+  if (req.params.status == 'true') {
     res.render('user/succes', { title: 'Pyment Success', user: req.session.user, style: 'status', hideHead: true })
   } else {
     res.render('user/faile', { title: 'Pyment Faied', user: req.session.user, style: 'status', hideHead: true })
@@ -433,7 +461,7 @@ router.get('/edit/:prodId', verifyLogin, verifyAdmin, (req, res, next) => {
   if (req.params.prodId) {
     productData.findProduct(req.params.prodId).then((response) => {
       if (response) {
-        console.log(response)
+
         response.price = parseInt(response.price)
         if (response.oldPrice) {
           response.oldPrice = parseInt(response.oldPrice)

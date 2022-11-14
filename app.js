@@ -15,7 +15,7 @@ var app = express();
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
-app.use(favicon(path.join(__dirname, 'public', '/images/favicon.jpg')));
+app.use(favicon(path.join(__dirname, 'public', '/images/favicon.png')));
 app.engine('hbs', handlebars.engine({ extname: 'hbs', defaultLayout: 'layout', layoutsDir: __dirname + '/views/layouts/', partialsDir: __dirname + '/views/partials/' }));
 app.use(session({ secret:"150@#$785", cookie:{ maxAge: 60000000 } }));
 db.connect((err) => {

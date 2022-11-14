@@ -6,8 +6,8 @@ var crypto = require('crypto')
 const Razorpay = require('razorpay')
 const saltRounds = 10;
 var instance = new Razorpay({
-    key_id: 'rzp_test_2TOP2DA2HluKoO',
-    key_secret: 'UCVabnF0GCgiXajvTAFextI9'
+    key_id: 'rzp_test_IZT277pRk7J4jj',
+    key_secret: 'daqJhwEsKL9tBTX4DHySsXoU'
   });
 
 module.exports = {
@@ -80,20 +80,22 @@ module.exports = {
             };
             instance.orders.create(options, function (err, order) {
                 if (err) {
-                    console.log(err);
+                    reject(err);
                 } else {
                     resolve(order);
                 }
             });
         });
     },
-    verifyPayment: (details) => {
+    verifyPayment: (details, userId) => {
         return new Promise((resolve, reject) => {
-            let hmac = crypto.createHmac('sha256', 'rzp_test_2TOP2DA2HluKoO');
+            let hmac = crypto.createHmac('sha256', 'daqJhwEsKL9tBTX4DHySsXoU');
             hmac.update(details['payment[razorpay_order_id]'] + '|' + details['payment[razorpay_payment_id]']);
             hmac = hmac.digest('hex');
+            console.log(hmac)
+            console.log(details['payment[razorpay_signature]'])
             if (hmac == details['payment[razorpay_signature]']) {
-                db.get().collection(COLLECTIONS.CART).deleteOne({ user: ObjectId(details.userId) });
+                db.get().collection(COLLECTIONS.CART).deleteOne({ user: ObjectId(userId) });
                 resolve(true);
             } else {
                 resolve(false);

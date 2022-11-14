@@ -45,16 +45,16 @@
             </a>
         </ul>
         <hr>
-        <ul>
-            <a href="/about">
+        <ul style="margin-top: 10px; height: 10px;">
+            <a href="/about" style="margin-top: 5px;">
                 <li>
                     <box-icon name='code-alt'></box-icon>&nbsp;ABOUT
                 </li>
             </a>
         </ul>
         <hr>
-        <ul>
-            <a href="/placed">
+        <ul style="margin-top: 10px; height: 10px;">
+            <a href="/placed" style="margin-top: 5px;">
                 <li>
                     <box-icon name='shopping-bag'></box-icon>&nbsp;PLACED
                 </li>
@@ -62,8 +62,8 @@
         </ul>
         <hr>
         {{#if login}}
-        <ul>
-            <a href="/account">
+        <ul style="margin-top: 10px; height: 10px;">
+            <a href="/account" style="margin-top: 5px;">
                 <li>
                     <box-icon name='user'></box-icon>&nbsp;ACCOUNT
                 </li>
@@ -72,24 +72,24 @@
         <hr>
         {{/if}}
         {{#if user.admin}}
-        <ul>
-            <a href="/add">
+        <ul style="margin-top: 10px; height: 10px;">
+            <a href="/add" style="margin-top: 5px;">
                 <li>
                     <box-icon name='plus'></box-icon>&nbsp;NEW PRODUCT
                 </li>
             </a>
         </ul>
         <hr>
-        <ul>
-            <a href="/products">
+        <ul style="margin-top: 10px; height: 10px;">
+            <a href="/products" style="margin-top: 5px;">
                 <li>
                     <box-icon name='folder' ></box-icon>&nbsp;PRODUCTS
                 </li>
             </a>
         </ul>
         <hr>
-        <ul>
-            <a href="/user/orders">
+        <ul style="margin-top: 10px; height: 10px;">
+            <a href="/user/orders" style="margin-top: 5px;">
             <li>
                 <box-icon name='time-five' ></box-icon>&nbsp;USER ORDERS
             </li>
@@ -97,20 +97,21 @@
         </ul>
         <hr>
         {{/if}}
-        <ul class="login-ul">
+        <ul style="margin-top: 10px; height: 10px;" class="login-ul">
             {{#if login}}
-            <a href="/logout" class="login-li">
+            <a href="/logout" class="login-li" style="margin-top: 5px;">
                 <li style="color: red;">
                     <box-icon name='log-out' color="red"></box-icon>&nbsp;LOGOUT
                 </li>
             </a>
             {{else}}
-            <a href="/login" class="login-li">
+            <a href="/login" class="login-li" style="margin-top: 5px;">
                 <li style="color: orange;">
                     <box-icon name='user-plus' color="orange"></box-icon>&nbsp;LOGIN
                 </li>
             </a>
             {{/if}}
         </ul>
+        <hr>
     </div>
 </div>
